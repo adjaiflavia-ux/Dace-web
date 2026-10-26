@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+/* ==========================================================
+   DESIGN SYSTEM Ɖa ce
+   Chaque couleur définie ici devient une classe Tailwind :
+   --color-cacao  →  bg-cacao, text-cacao, border-cacao…
+   ========================================================== */
+@theme {
+  /* Base : crème + cacao */
+  --color-cacao: #4d1e0d;
+  --color-creme: #f7ebdd;
+  --color-beige: #e9d4bd;
+  --color-encre: #26140d; /* texte sombre */
+
+  /* Accents (à utiliser avec parcimonie) */
+  --color-terracotta: #b85c38;
+  --color-ocre: #c8943e;
+  --color-olive: #68704a;
+
+  /* Polices (chargées dans src/lib/fonts.ts) */
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-sans: var(--font-montserrat), system-ui, sans-serif;
+
+  /* Courbe d'animation douce, utilisée partout */
+  --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ---------- Base ---------- */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-creme);
+  color: var(--color-encre);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Sélection de texte aux couleurs du site */
+::selection {
+  background-color: var(--color-ocre);
+  color: var(--color-encre);
+}
+
+/* Focus clavier bien visible (accessibilité) */
+:focus-visible {
+  outline: 2px solid var(--color-ocre);
+  outline-offset: 3px;
+}
+
+/* Titres éditoriaux : Fraunces en version « douce » (axe SOFT),
+   qui fait écho aux formes arrondies du logo. */
+.font-display {
+  font-variation-settings: "SOFT" 100, "WONK" 0;
+}
+
+/* Respect des préférences « réduire les animations » */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
